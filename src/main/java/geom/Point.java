@@ -1,4 +1,4 @@
 package geom;
 
-public record Point(float x, float y) {
+public record Point(double x, double y) {
 }
