@@ -5,7 +5,7 @@ import java.util.Optional;
 public record Line(Point from, Vector direction) {
     static final double EPS = 1e-5;
 
-    Point apply(double t) {
+    public Point apply(double t) {
         return from.add(direction.mul(t));
     }
 
@@ -13,7 +13,7 @@ public record Line(Point from, Vector direction) {
 
     }
 
-    Optional<LineIntersection> intersectsAt(Line other) {
+    public Optional<LineIntersection> intersectsAt(Line other) {
         if (direction().dot(other.direction()) / (direction.size() * other.direction().size()) < EPS) {
             return Optional.empty();
         }
@@ -28,7 +28,7 @@ public record Line(Point from, Vector direction) {
         return Optional.of(new LineIntersection(apply(t1), t1, t2));
     }
 
-    Optional<Double> intersectsAt(Segment segment) {
+    public Optional<Double> intersectsAt(Segment segment) {
         final Line other = new Line(segment.a(), segment.direction());
         final Optional<LineIntersection> intersection = intersectsAt(other);
         if (intersection.isEmpty() || intersection.get().t2 < 0 || intersection.get().t2 > 1) {
