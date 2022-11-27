@@ -50,7 +50,7 @@ public class FindX {
 
         Random random = new Random();
         List<Line> lines = new ArrayList<>();
-        double x = (Math.abs(max) - Math.abs(min)) / random.nextInt(10, 10_000);
+        double x = (Math.abs(max) - Math.abs(min)) / random.nextInt(2, 10_000);
         int prevIdx = 0;
 
         lines.add(new Line(creator.apply(max), vector));
