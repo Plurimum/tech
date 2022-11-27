@@ -20,7 +20,7 @@ public class FindD {
                 new Point(list.stream().map(Point::x).max(Double::compareTo).orElseThrow(), list.stream().map(Point::y).max(Double::compareTo).orElseThrow()), );
     }
 
-    public List<Rectangle> findRectangles(List<Point> polygon, Line top, Line bottom) {
+    List<Rectangle> findRectangles(List<Point> polygon, Line top, Line bottom) {
         assert top.direction().equals(bottom.direction());
         List<Segment> segments = new ArrayList<>();
         for (int i = 0; i < polygon.size(); i++) {
