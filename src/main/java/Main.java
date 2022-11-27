@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ public class Main {
                 Writer writer = Files.newBufferedWriter(Path.of("out"))
         ) {
             ReadWrite readWrite = new ReadWrite();
-            Set<Point> polygon = readWrite.readPolygon(scanner);
+            List<Point> polygon = readWrite.readPolygon(scanner);
 
             Set<Rectangle> rectangles = Set.of(new Rectangle(new Point(1.2345, 6.789), new Point(6.789, 1.2345))); // get from solve method
 
