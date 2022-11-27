@@ -10,9 +10,19 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class FindX {
+    public List<Line> find(List<Point> polygon) {
+        return find(polygon, Mode.HORIZONTAL);
+    }
+
     public List<Line> find(List<Point> polygon, Mode mode) {
         if (mode == Mode.HORIZONTAL) {
-            return find(polygon, )
+            Function<Double, Point> creator = d -> new Point(0.0, d);
+
+            return find(polygon, Point::y, creator, new Vector(1.0, 0.0));
+        } else {
+            Function<Double, Point> creator = d -> new Point(d, 0.0);
+
+            return find(polygon, Point::x, creator, new Vector(0.0, 1.0));
         }
 
     }
