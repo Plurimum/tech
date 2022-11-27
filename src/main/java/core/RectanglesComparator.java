@@ -18,11 +18,11 @@ public class RectanglesComparator {
         double cost1 = rectangles1.stream()
                 .map(this::getCost)
                 .reduce(Double::sum)
-                .get(); // pohui
+                .orElse(Double.MAX_VALUE); // pohui
         double cost2 = rectangles2.stream()
                 .map(this::getCost)
                 .reduce(Double::sum)
-                .get(); // pohui
+                .orElse(Double.MAX_VALUE); // pohui
         
         if (cost1 < cost2) {
             return rectangles1;

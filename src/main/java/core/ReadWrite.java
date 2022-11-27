@@ -1,3 +1,5 @@
+package core;
+
 import geom.Point;
 import geom.Rectangle;
 
@@ -6,16 +8,12 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public class ReadWrite {
-    public List<Point> readPolygon(Scanner scanner) {
-        String[] firstLine = scanner.nextLine().split(" ");
-        int n = Integer.parseInt(firstLine[0]);
+    public List<Point> readPolygon(Scanner scanner, int n) {
         List<Point> polygon = new ArrayList<>();
 
-        polygon.add(new Point(Double.parseDouble(firstLine[1]), Double.parseDouble(firstLine[2])));
         Stream.generate(() -> {
                     String[] values = scanner.nextLine().split(" ");
 
@@ -27,7 +25,7 @@ public class ReadWrite {
         return polygon;
     }
 
-    public void writeAnswer(Writer writer, Set<Rectangle> rectangles) throws IOException {
+    public void writeAnswer(Writer writer, List<Rectangle> rectangles) throws IOException {
         writer.write(String.valueOf(rectangles.size()) + '\n');
 
         rectangles.forEach(rectangle -> {

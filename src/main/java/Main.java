@@ -1,3 +1,6 @@
+import core.Launches;
+import core.ReadWrite;
+import geom.Place;
 import geom.Point;
 import geom.Rectangle;
 
@@ -16,11 +19,17 @@ public class Main {
                 Writer writer = Files.newBufferedWriter(Path.of("out"))
         ) {
             ReadWrite readWrite = new ReadWrite();
-            List<Point> polygon = readWrite.readPolygon(scanner);
+            String[] firstLine = scanner.nextLine().split(" ");
+            int n = Integer.parseInt(firstLine[0]);
+            double c1 = Double.parseDouble(firstLine[1]);
+            double c2 = Double.parseDouble(firstLine[2]);
 
-            Set<Rectangle> rectangles = Set.of(new Rectangle(new Point(1.2345, 6.789), new Point(6.789, 1.2345))); // get from solve method
+            Launches launches = new Launches();
 
-            readWrite.writeAnswer(writer, rectangles);
+            List<Point> polygon = readWrite.readPolygon(scanner, n);
+            List<Rectangle> best = launches.launch(polygon, c1, c2, 5);
+
+            readWrite.writeAnswer(writer, best);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
