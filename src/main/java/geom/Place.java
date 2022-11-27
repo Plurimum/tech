@@ -1,5 +1,5 @@
 package geom;
 
-public enum Place {
+    public enum Place {
     IN, OUT
 }
