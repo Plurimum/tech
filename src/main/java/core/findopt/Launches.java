@@ -1,10 +1,11 @@
-package core;
+package core.findopt;
 
-import core.findD.FindD;
+import geom.RectanglesComparator;
+import core.findd.FindD;
 import core.findx.FindX;
-import geom.Line;
-import geom.Point;
-import geom.Rectangle;
+import geom.obj.Line;
+import geom.obj.Point;
+import geom.obj.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +22,16 @@ public class Launches {
             List<Rectangle> allRectangles = new ArrayList<>();
 
             for (int i = 0; i < lines.size() - 1; i++) {
-                List<Rectangle> rectangles = findD.findRectangles(polygon, lines.get(i), lines.get(i + 1));
+                List<Rectangle> rectangles = findD.findRectangles(polygon, lines.get(i), lines.get(i + 1), c1, c2);
 
                 allRectangles.addAll(rectangles);
             }
 
-            bestRectangles = rectanglesComparator.minList(bestRectangles, allRectangles);
+            int res = rectanglesComparator.compare(bestRectangles, allRectangles);
+
+            if (res > 0) {
+                bestRectangles = allRectangles;
+            }
         }
 
         return bestRectangles;

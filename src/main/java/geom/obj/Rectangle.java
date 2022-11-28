@@ -1,4 +1,6 @@
-package geom;
+package geom.obj;
+
+import geom.Place;
 
 public record Rectangle(Point a, Point b, Place place) {
     public double square() {

@@ -1,8 +1,7 @@
-import core.Launches;
+import core.findopt.Launches;
 import core.ReadWrite;
-import geom.Place;
-import geom.Point;
-import geom.Rectangle;
+import geom.obj.Point;
+import geom.obj.Rectangle;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -10,7 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,7 +25,7 @@ public class Main {
             Launches launches = new Launches();
 
             List<Point> polygon = readWrite.readPolygon(scanner, n);
-            List<Rectangle> best = launches.launch(polygon, c1, c2, 5);
+            List<Rectangle> best = launches.launch(polygon, c1, c2, 10);
 
             readWrite.writeAnswer(writer, best);
         } catch (IOException e) {

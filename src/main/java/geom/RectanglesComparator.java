@@ -1,11 +1,11 @@
-package core;
+package geom;
 
-import geom.Place;
-import geom.Rectangle;
+import geom.obj.Rectangle;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class RectanglesComparator {
+public class RectanglesComparator implements Comparator<List<Rectangle>> {
     private final double c1;
     private final double c2;
 
@@ -14,21 +14,30 @@ public class RectanglesComparator {
         this.c2 = c2;
     }
 
-    public List<Rectangle> minList(List<Rectangle> rectangles1, List<Rectangle> rectangles2) {
+    @Override
+    public int compare(List<Rectangle> rectangles1, List<Rectangle> rectangles2) {
+        if (rectangles1.isEmpty()) {
+            if (rectangles2.isEmpty()) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else {
+            if (rectangles2.isEmpty()) {
+                return -1;
+            }
+        }
+
         double cost1 = rectangles1.stream()
                 .map(this::getCost)
                 .reduce(Double::sum)
-                .orElse(Double.MAX_VALUE); // pohui
+                .orElseThrow(); // pohui
         double cost2 = rectangles2.stream()
                 .map(this::getCost)
                 .reduce(Double::sum)
-                .orElse(Double.MAX_VALUE); // pohui
-        
-        if (cost1 < cost2) {
-            return rectangles1;
-        } else {
-            return rectangles2;
-        }
+                .orElseThrow(); // pohui
+
+        return Double.compare(cost1, cost2);
     }
 
     private double getCost(Rectangle rectangle) {

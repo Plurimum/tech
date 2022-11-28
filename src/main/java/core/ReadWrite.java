@@ -1,7 +1,7 @@
 package core;
 
-import geom.Point;
-import geom.Rectangle;
+import geom.obj.Point;
+import geom.obj.Rectangle;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -33,7 +33,7 @@ public class ReadWrite {
                 Point a = rectangle.a();
                 Point b = rectangle.b();
 
-                writer.write(a.x() + " " + a.y() + " " + b.x() + " " + b.y());
+                writer.write(a.x() + " " + a.y() + " " + b.x() + " " + b.y() + "\n");
             } catch (IOException e) {
                 throw new RuntimeException("poh", e);
             }

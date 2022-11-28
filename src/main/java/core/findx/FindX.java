@@ -1,8 +1,8 @@
 package core.findx;
 
-import geom.Line;
-import geom.Point;
-import geom.Vector;
+import geom.obj.Line;
+import geom.obj.Point;
+import geom.obj.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
