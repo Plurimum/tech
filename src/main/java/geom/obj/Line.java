@@ -3,7 +3,7 @@ package geom.obj;
 import java.util.Optional;
 
 public record Line(Point from, Vector direction) {
-    static final double EPS = 1e-5;
+    static final double EPS = 1e-12;
 
     public Optional<Point> intersect(Segment segment) {
         double x1 = from.x();

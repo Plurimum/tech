@@ -16,17 +16,17 @@ import java.util.stream.IntStream;
 
 public class FindD {
 
-    private static final Random RANDOM = new Random(0);
+    private static final Random RANDOM = new Random(); // seed 0
 
     private Rectangle getBounds(Line top, Line bottom, double[] topIntersections, double[] bottomIntersections) {
-        double minXTop = Double.MAX_VALUE;
-        double maxXTop = Double.MIN_VALUE;
-        double minXBot = Double.MAX_VALUE;
-        double maxXBot = Double.MIN_VALUE;
+        double minXTop = Double.POSITIVE_INFINITY;
+        double maxXTop = Double.NEGATIVE_INFINITY;
+        double minXBot = Double.POSITIVE_INFINITY;
+        double maxXBot = Double.NEGATIVE_INFINITY;
 
         for (double topIntersection : topIntersections) {
             minXTop = Math.min(minXTop, topIntersection);
-            maxXTop = Math.min(maxXTop, topIntersection);
+            maxXTop = Math.max(maxXTop, topIntersection);
         }
 
         for (double bottomIntersection : bottomIntersections) {
@@ -37,7 +37,7 @@ public class FindD {
         return new Rectangle(
                 new Point(Math.min(minXBot, minXTop), bottom.from().y()),
                 new Point(Math.max(maxXBot, maxXTop), top.from().y()),
-                Place.IN
+                Place.OUT
         );
     }
 
@@ -72,7 +72,7 @@ public class FindD {
 
         Rectangle bounds = getBounds(top, bottom, top_intersections, bottom_intersections);
 
-        return IntStream.range(0, 10).mapToObj(d -> {
+        return IntStream.range(0, 100).mapToObj(d -> {
                     List<Double> delimiters = generateRectanglesFrom(bounds.a().x(), bounds.b().x(), d);
                     List<Rectangle> rects = new ArrayList<>();
                     double prev = bounds.a().x();

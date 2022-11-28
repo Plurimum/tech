@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try (
-                Scanner scanner = new Scanner(Files.newBufferedReader(Path.of("tests/01.txt")));
+                Scanner scanner = new Scanner(Files.newBufferedReader(Path.of("tests/02.txt")));
                 Writer writer = Files.newBufferedWriter(Path.of("out"))
         ) {
             ReadWrite readWrite = new ReadWrite();

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -33,10 +34,19 @@ public class ReadWrite {
                 Point a = rectangle.a();
                 Point b = rectangle.b();
 
-                writer.write(a.x() + " " + a.y() + " " + b.x() + " " + b.y() + "\n");
+                String x1 = formatDouble(a.x());
+                String y1 = formatDouble(a.y());
+                String x2 = formatDouble(b.x());
+                String y2 = formatDouble(b.y());
+
+                writer.write(x1 + " " + y1 + " " + x2 + " " + y2 + "\n");
             } catch (IOException e) {
                 throw new RuntimeException("poh", e);
             }
         });
+    }
+
+    private String formatDouble(double num) {
+        return String.format(Locale.US, "%.11f", num);
     }
 }
