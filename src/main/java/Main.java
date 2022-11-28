@@ -25,7 +25,7 @@ public class Main {
             Launches launches = new Launches();
 
             List<Point> polygon = readWrite.readPolygon(scanner, n);
-            List<Rectangle> best = launches.launch(polygon, c1, c2, 10);
+            List<Rectangle> best = launches.launch(polygon, c1, c2, 1_000);
 
             readWrite.writeAnswer(writer, best);
         } catch (IOException e) {

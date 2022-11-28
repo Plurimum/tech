@@ -60,7 +60,7 @@ public class FindX {
             double newPrev = prev - x;
 
             if (newPrev < min) {
-                lines.add(new Line(creator.apply(min), vector));
+                lines.set(prevIdx, new Line(creator.apply(min), vector));
                 break;
             }
 
